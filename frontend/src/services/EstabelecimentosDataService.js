@@ -35,7 +35,7 @@ class EstabelecimentosDataService {
   }
 
   findByTitle(title) {
-    return http.get(`/estabelecimentos?title=${title}`);
+    return http.get(`/estabelecimentos/${title}`);
   }
 }
 

@@ -27,7 +27,7 @@ class PedidosDataService {
   }
 
   findByTitle(title) {
-    return http.get(`/pedidos?title=${title}`);
+    return http.get(`/pedidos/${title}`);
   }
 }
 

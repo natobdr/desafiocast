@@ -19,9 +19,12 @@ class EstabelecimentosController extends Controller
         return EstabelecimentosResource::collection($estabelecimentos);
     }
 
-    public function show(Estabelecimentos $estabelecimento)
+    public function show($title)
     {
-        $estabelecimento->load('categorias','produtos');
+        $estabelecimento = Estabelecimentos::where('estabelecimento_nome', $title)->first();
+        if (!$estabelecimento) {
+            return response()->json(['message' => 'Estabelecimento não encontrado'], 404);
+        }
         return new EstabelecimentosResource($estabelecimento);
     }
 

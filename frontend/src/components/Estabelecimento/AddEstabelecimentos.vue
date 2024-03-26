@@ -178,7 +178,7 @@ export default {
       };
     },
     retrieveEstabelecimentos() {
-      EstabelecimentosDataService.getEstabelecimento()
+      EstabelecimentosDataService.getCategoria()
       .then(response => {
           this.categorias = response.data.data;
           console.log(this.categorias);

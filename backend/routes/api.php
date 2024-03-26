@@ -18,15 +18,15 @@ Route::get('/categorias', [\App\Http\Controllers\CategoriasController::class, 'i
 Route::post('/categorias/{categoria}', [\App\Http\Controllers\CategoriasController::class, 'create']);
 
 Route::get('/estabelecimentos', [\App\Http\Controllers\EstabelecimentosController::class, 'index']);
-Route::get('/estabelecimentos/{id}', [\App\Http\Controllers\EstabelecimentosController::class, 'produtos']);
+Route::get('/estabelecimentos/{title}', [\App\Http\Controllers\EstabelecimentosController::class, 'show']);
 Route::post('/estabelecimentos', [\App\Http\Controllers\EstabelecimentosController::class, 'store']);
 
 Route::get('/produtos', [\App\Http\Controllers\ProdutosController::class, 'index']);
-Route::get('/produtos/{produto}', [\App\Http\Controllers\ProdutosController::class, 'show']);
-
+Route::get('/produtos/{title}', [\App\Http\Controllers\ProdutosController::class, 'show']);
+Route::post('/produtos', [\App\Http\Controllers\ProdutosController::class, 'store']);
 
 Route::get('/pedidos', [\App\Http\Controllers\PedidosController::class, 'index']);
-Route::get('/pedidos/{pedido}', [\App\Http\Controllers\PedidosController::class, 'show']);
+Route::get('/pedidos/{title}', [\App\Http\Controllers\PedidosController::class, 'show']);
 Route::post('/pedidos', [\App\Http\Controllers\PedidosController::class, 'store']);
 /*Route::get('/produtos', function (Request $request) {
     return \App\Models\Produtos::all();

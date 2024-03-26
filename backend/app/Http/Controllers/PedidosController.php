@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EstabelecimentosResource;
 use App\Http\Resources\PedidosResource;
 use App\Models\EstabelecimentoPedidos;
+use App\Models\Estabelecimentos;
 use App\Models\Pedidos;
 use Illuminate\Http\Request;
 
@@ -15,10 +17,15 @@ class PedidosController extends Controller
         return PedidosResource::collection($produtos);
     }
 
-    public function show(Pedidos $pedido)
+    public function show($title)
     {
-        $pedido->load('produtos');
-        return new PedidosResource($pedido);
+        $estabelecimento = Estabelecimentos::where('estabelecimento_nome', $title)->first();
+        if (!$estabelecimento) {
+            return response()->json(['message' => 'Estabelecimento não encontrado'], 404);
+        }
+
+        $estabelecimento->load('pedidos');
+        return new EstabelecimentosResource($estabelecimento);
     }
 
     public function store(Request $request)

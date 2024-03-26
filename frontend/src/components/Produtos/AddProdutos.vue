@@ -25,7 +25,7 @@
       </div>
       <div class="form-group">
         <label for="estabelecimento">Estabelecimento</label>
-        <select v-model="pedido.estabelecimento_id" class="form-control" id="estabelecimento" required>
+        <select v-model="produto.estabelecimento_id" class="form-control" id="estabelecimento" required>
           <option value="">Selecione um estabelecimento</option>
           <option v-for="estabelecimento in estabelecimentos" :key="estabelecimento.id" :value="estabelecimento.id">{{ estabelecimento.estabelecimento_nome }}</option>
         </select>
@@ -53,10 +53,8 @@ export default {
       produto: {
         id: null,
         produto_nome: "",
-        valor: ""
-      },
-      pedido: {
-        estabelecimento_id: ""
+        valor: "",
+        estabelecimento_id: "", // Corrigido para estabelecimento_id
       },
       estabelecimentos: [],
       submitted: false
@@ -65,8 +63,9 @@ export default {
   methods: {
     saveProduto() {
       var data = {
-        title: this.produto.produto_nome,
-        valor: this.produto.valor
+        produto_nome: this.produto.produto_nome,
+        produto_valor: parseFloat(this.produto.valor),
+        estabelecimento_id: this.produto.estabelecimento_id // Corrigido para produto.estabelecimento_id
       };
 
       ProdutosDataService.create(data)
@@ -85,7 +84,8 @@ export default {
       this.produto = {
         id: null,
         produto_nome: "",
-        valor: ""
+        valor: "",
+        estabelecimento_id: "", // Corrigido para estabelecimento_id
       };
     },
 

@@ -11,7 +11,7 @@ class ProdutosDataService {
 
   create(data) {
     console.log(data);
-    return http.post(`/produtos/${data.title}`, data);
+    return http.post(`/produtos`, data);
   }
 
   update(id, data) {
@@ -27,7 +27,7 @@ class ProdutosDataService {
   }
 
   findByTitle(title) {
-    return http.get(`/produtos?title=${title}`);
+    return http.get(`/produtos/${title}`);
   }
 }
 
